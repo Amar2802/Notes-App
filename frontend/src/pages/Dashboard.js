@@ -55,7 +55,27 @@ function Dashboard() {
     window.location.href = "/";
   };
 
-  
+  const updateNote = async (id) => {
+    try {
+      await api.put(
+        `/notes/${id}`,
+        {
+          title,
+          content,
+        },
+        {
+          headers: {
+            Authorization: `Bearer ${token}`,
+          },
+        }
+      );
+
+      fetchNotes();
+    } catch {
+      alert("Failed to update note");
+    }
+  };
+
   const deleteNote = async (id) => {
     await api.delete(`/notes/${id}`, {
       headers: {
@@ -125,6 +145,7 @@ function Dashboard() {
           <h4>{note.title}</h4>
           <p>{note.content}</p>
           <button onClick={() => deleteNote(note.id)}>Delete</button>
+          <button onClick={() => updateNote(note.id)}>Update</button>   
         </div>
       ))}
     </div>
