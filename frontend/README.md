@@ -1,70 +1,261 @@
-# Getting Started with Create React App
+# 📝 Notes App
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+A full-stack Notes Management Application built using **React.js** and **FastAPI**. The application allows users to register, log in securely using JWT authentication, and manage their personal notes through Create, Read, Update, and Delete (CRUD) operations.
 
-## Available Scripts
+---
 
-In the project directory, you can run:
+## 🚀 Features
 
-### `npm start`
+### Authentication
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+* User Registration
+* User Login
+* Password Hashing using bcrypt
+* JWT Authentication
+* Protected Routes
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+### Notes Management
 
-### `npm test`
+* Create Notes
+* View Notes
+* Update Notes
+* Delete Notes
+* User-specific Notes Access
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+### Backend Features
 
-### `npm run build`
+* FastAPI REST APIs
+* SQLite Database
+* SQLAlchemy ORM
+* Input Validation using Pydantic
+* Structured Error Handling
+* CORS Configuration
+* Swagger API Documentation
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+### Frontend Features
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+* React.js User Interface
+* React Router Navigation
+* Axios API Integration
+* Dashboard for Notes Management
+* Responsive and Clean UI
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+### Testing
 
-### `npm run eject`
+* Basic Unit Testing with Pytest
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
+---
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+## 🛠️ Tech Stack
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
+### Frontend
 
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
+* React.js
+* React Router DOM
+* Axios
+* CSS
 
-## Learn More
+### Backend
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+* FastAPI
+* SQLAlchemy
+* SQLite
+* Pydantic
+* JWT (python-jose)
+* Passlib & bcrypt
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+### Testing
 
-### Code Splitting
+* Pytest
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
+---
 
-### Analyzing the Bundle Size
+## 📂 Project Structure
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
+```text
+Notes-App/
 
-### Making a Progressive Web App
+├── backend/
+│   ├── app.py
+│   ├── auth.py
+│   ├── database.py
+│   ├── models.py
+│   ├── schemas.py
+│   ├── notes.db
+│   ├── requirements.txt
+│   └── tests/
+│       └── test_basic.py
+│
+├── frontend/
+│   ├── src/
+│   │   ├── pages/
+│   │   │   ├── Login.js
+│   │   │   ├── Register.js
+│   │   │   └── Dashboard.js
+│   │   │
+│   │   ├── services/
+│   │   │   └── api.js
+│   │   │
+│   │   ├── App.js
+│   │   └── App.css
+│   │
+│   └── package.json
+│
+└── README.md
+```
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
+---
 
-### Advanced Configuration
+## ⚙️ Backend Setup
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
+### Create Virtual Environment
 
-### Deployment
+```bash
+python -m venv venv
+```
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
+### Activate Virtual Environment
 
-### `npm run build` fails to minify
+#### Windows
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+```bash
+venv\Scripts\activate
+```
+
+#### Linux / Mac
+
+```bash
+source venv/bin/activate
+```
+
+### Install Dependencies
+
+```bash
+pip install -r requirements.txt
+```
+
+### Run Backend Server
+
+```bash
+python -m uvicorn app:app --reload
+```
+
+Backend will run on:
+
+```text
+http://127.0.0.1:8000
+```
+
+Swagger Documentation:
+
+```text
+http://127.0.0.1:8000/docs
+```
+
+---
+
+## ⚙️ Frontend Setup
+
+Navigate to frontend directory:
+
+```bash
+cd frontend
+```
+
+Install dependencies:
+
+```bash
+npm install
+```
+
+Run React App:
+
+```bash
+npm start
+```
+
+Frontend will run on:
+
+```text
+http://localhost:3000
+```
+
+---
+
+## 🔐 Authentication Flow
+
+1. User registers an account.
+2. Password is securely hashed before storage.
+3. User logs in using email and password.
+4. Backend generates a JWT token.
+5. Token is stored in localStorage.
+6. Protected APIs require JWT token for access.
+
+---
+
+## 📌 API Endpoints
+
+### Authentication
+
+| Method | Endpoint  | Description   |
+| ------ | --------- | ------------- |
+| POST   | /register | Register User |
+| POST   | /login    | Login User    |
+
+### Notes
+
+| Method | Endpoint    | Description   |
+| ------ | ----------- | ------------- |
+| POST   | /notes      | Create Note   |
+| GET    | /notes      | Get All Notes |
+| PUT    | /notes/{id} | Update Note   |
+| DELETE | /notes/{id} | Delete Note   |
+
+---
+
+## 🧪 Running Tests
+
+Run the following command inside backend:
+
+```bash
+pytest
+```
+
+Expected Output:
+
+```text
+1 passed
+```
+
+---
+
+## 🔮 Future Improvements
+
+* Note Categories
+* Search Notes
+* Dark Mode
+* Note Creation Timestamp
+* User Profile Management
+* PostgreSQL Support
+* Docker Deployment
+
+---
+
+## 📸 Screenshots
+
+Add screenshots of:
+
+* Login Page
+* Registration Page
+* Dashboard
+* Notes CRUD Operations
+* Swagger Documentation
+* Test Results
+
+---
+
+## 👨‍💻 Author
+
+Amarnath Yadav
+
+Built as a Backend Developer Internship Assignment using React and FastAPI.
