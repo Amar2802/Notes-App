@@ -4,6 +4,17 @@ from database import engine, get_db
 from models import Base, User, Note 
 from schemas import UserCreate, UserLogin, NoteCreate
 from auth import (hash_password, verify_password, create_access_token, verify_token)
+from fastapi.middleware.cors import CORSMiddleware
+
+app = FastAPI()
+
+app.add_middleware(
+    CORSMiddleware,
+    allow_origins=["*"],
+    allow_credentials=True,
+    allow_methods=["*"],
+    allow_headers=["*"],
+)
 
 Base.metadata.create_all(bind=engine)
 
@@ -16,7 +27,6 @@ def get_current_user(authorization: str = Header(None)):
         raise HTTPException(status_code=401, detail="Invalid token")
     return payload["user_id"]
 
-app = FastAPI()
 
 @app.get("/")
 def home():
